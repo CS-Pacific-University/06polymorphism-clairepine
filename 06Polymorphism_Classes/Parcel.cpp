@@ -24,128 +24,129 @@ Parcel::Parcel() {
 }
 
 //***************************************************************************
-// Function:
+// Function:		getWeight
 //
-// Description:
+// Description:	Returns the weight of the package
 //
-// Parameters:
+// Parameters:	none
 //
-// Returned:
+// Returned:		mWeight
 //***************************************************************************
 int Parcel::getWeight() const {
-	return 0;
+
+	return mWeight;
 }
 
 //***************************************************************************
-// Function:
+// Function:		getDistance
 //
-// Description:
+// Description:	Returns the distance between the To and From address
 //
-// Parameters:
+// Parameters:	none
 //
-// Returned:
+// Returned:		mDistance
 //***************************************************************************
 int Parcel::getDistance() const {
 	return 0;
 }
 
 //***************************************************************************
-// Function:
+// Function:		getInsured
 //
-// Description:
+// Description:	Determines whether or not the package is insured
 //
-// Parameters:
+// Parameters:	none
 //
-// Returned:
+// Returned:		mbInsured
 //***************************************************************************
 bool Parcel::getInsured() const {
 	return false;
 }
 
 //***************************************************************************
-// Function:
+// Function:		getRush
 //
-// Description:
+// Description:	Determines whether or not the parcel has a rush delivery
 //
-// Parameters:
+// Parameters:	none
 //
-// Returned:
+// Returned:		mbRush
 //***************************************************************************
 bool Parcel::getRush() const {
 	return false;
 }
 
 //***************************************************************************
-// Function:
+// Function:		getTid
 //
-// Description:
+// Description:	Gets the tracking id for the parcel
 //
-// Parameters:
+// Parameters:	none
 //
-// Returned:
+// Returned:		mTrackingId
 //***************************************************************************
 int Parcel::getTid() const {
 	return 0;
 }
 
 //***************************************************************************
-// Function:
+// Function:		setCost
 //
-// Description:
+// Description:	Cost of the parcel to ship
 //
-// Parameters:
+// Parameters:	cost			-cost of package
 //
-// Returned:
+// Returned:		none
 //***************************************************************************
 void Parcel::setCost(double cost) {
 }
 
 //***************************************************************************
-// Function:
+// Function:		read
 //
-// Description:
+// Description:	Input from the stream to Parcel
 //
-// Parameters:
+// Parameters:	rcIn		-the stream to read in from
 //
-// Returned:
+// Returned:		bVal		-if the data is correct or not
 //***************************************************************************
 bool Parcel::read(istream& rcIn) {
 	return false;
 }
 
 //***************************************************************************
-// Function:
+// Function:		print
 //
-// Description:
+// Description:	Output the Parcel to the stream
 //
-// Parameters:
+// Parameters:	rcOut		-the stream to output to
 //
-// Returned:
+// Returned:		none
 //***************************************************************************
 void Parcel::print(ostream& rcOut) const {
 }
 
 //***************************************************************************
-// Function:
+// Function:		getCost
 //
-// Description:
+// Description:	Returns the cost of the Package
 //
-// Parameters:
+// Parameters:	none
 //
-// Returned:
+// Returned:		mCost
 //***************************************************************************
 double Parcel::getCost() const {
 	return 0.0;
 }
 
 //***************************************************************************
-// Function:
+// Function:		getDeliveryDay
 //
-// Description:
+// Description:	Returns the date for expected delivery
 //
-// Parameters:
+// Parameters:	none
 //
-// Returned:
+// Returned:		date
 //***************************************************************************
 int Parcel::getDeliveryDay() const {
 	return 0;
