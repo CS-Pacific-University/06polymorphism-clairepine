@@ -15,11 +15,12 @@
 // Description:	Call the Parcel default constructor, initialize the variables 
 //							with parameters
 //
-// Parameters:
+// Parameters:	none
 //
 // Returned:		none
 //***************************************************************************
-Overnight::Overnight() {
+Overnight::Overnight() : Parcel (), mVolume (0) {
+
 }
 
 //***************************************************************************
@@ -62,26 +63,38 @@ double Overnight::setRush(bool rush) {
 }
 
 //***************************************************************************
-// Function:
+// Function:		read
 //
-// Description:
+// Description:	Input from the stream and calling read function
 //
-// Parameters:
+// Parameters:	rcIn		- the stream to read in from
 //
-// Returned:
+// Returned:		bVal		- true or false (valid input)
 //***************************************************************************
 bool Overnight::read(istream& rcIn) {
-	return false;
+	bool bVal = true;
+
+	Parcel::read(rcIn);
+
+	rcIn >> mVolume;
+
+	return bVal;
 }
 
 //***************************************************************************
-// Function:
+// Function:		print
 //
-// Description:
+// Description:	Calls the print function and prints overnight information
+//							to the stream
 //
-// Parameters:
+// Parameters:	rcOut		- the stream to print to
 //
-// Returned:
+// Returned:		none
 //***************************************************************************
 void Overnight::print(ostream& rcOut) const {
+
+	Parcel::print(rcOut); 
+
+	rcOut << "\t" << "OVERNIGHT!";
+
 }
