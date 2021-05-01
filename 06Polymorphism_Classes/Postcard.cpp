@@ -15,11 +15,12 @@
 // Description:	Call the Parcel default constructor, initialize the variables 
 //							with parameters
 //
-// Parameters:
+// Parameters:	none
 //
 // Returned:		none
 //***************************************************************************
-Postcard::Postcard() {
+Postcard::Postcard() : Parcel (), mMessage(0) {
+
 }
 
 //***************************************************************************
@@ -75,26 +76,36 @@ double Postcard::setRush(bool rush) {
 }
 
 //***************************************************************************
-// Function:
+// Function:		read
 //
-// Description:
+// Description:	Input from the stream and calling read function
 //
-// Parameters:
+// Parameters:	rcIn		- the stream to read in from
 //
-// Returned:
+// Returned:		bVal		- true or false
 //***************************************************************************
 bool Postcard::read(istream& rcIn) {
-	return false;
+	bool bVal = true;
+
+	Parcel::read(rcIn);
+
+	rcIn >> mMessage;
+
+	return bVal;
 }
 
 //***************************************************************************
-// Function:
+// Function:		print
 //
-// Description:
+// Description:	Print Postcard to ostream
 //
-// Parameters:
+// Parameters:	rcOut		- the stream to print to
 //
-// Returned:
+// Returned:	none
 //***************************************************************************
 void Postcard::print(ostream& rcOut) const {
+	
+	Parcel::print(rcOut); 
+
+	rcOut << "\t" << mMessage; 
 }

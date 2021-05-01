@@ -30,7 +30,7 @@ Letter::Letter() : Parcel() {
 //
 // Parameters:	none
 //
-// Returned:		
+// Returned:		deliveryDay
 //***************************************************************************
 int Letter::getDeliveryDay() const {
 	const int MILES = 100;
@@ -46,7 +46,7 @@ int Letter::getDeliveryDay() const {
 		deliveryDay++;
 	}
 
-	if (bRush = true) {
+	if (bRush == true) {
 		deliveryDay -= ONE; 
 	}
 
@@ -58,24 +58,24 @@ int Letter::getDeliveryDay() const {
 }
 
 //***************************************************************************
-// Function:
+// Function:		setInsured
 //
-// Description:
+// Description:	Sets the amount for having the letter insured
 //
-// Parameters:
+// Parameters:	insured		-if insured or not
 //
-// Returned:
+// Returned:		
 //***************************************************************************
 double Letter::setInsured(bool insured) {
 	return 0.0;
 }
 
 //***************************************************************************
-// Function:
+// Function:		setRush
 //
-// Description:
+// Description:	Sets the amount for having a rush for delivery day
 //
-// Parameters:
+// Parameters:	rush		-if it has rush delivery or not
 //
 // Returned:
 //***************************************************************************
@@ -90,7 +90,7 @@ double Letter::setRush(bool rush) {
 //
 // Parameters:	rcIn		- the stream to read in from
 //
-// Returned:		bVal - true or false
+// Returned:		bVal		- true or false
 //***************************************************************************
 bool Letter::read(istream& rcIn) {
 	bool bVal = true;
