@@ -13,9 +13,27 @@
 //***************************************************************************
 // Constructor:	Parcel
 //
+// Description:	Default constructor
+//
+// Parameters:	none
+//
+// Returned:		none
+//***************************************************************************
+Parcel::Parcel() {
+
+}
+
+//***************************************************************************
+// Constructor:	Parcel
+//
 // Description:	Initialize the name with the parameter string
 //
-// Parameters:
+// Parameters:	trackingId		-tracking int
+//							to						-inital address
+//							from					-final address
+//							weight				-weight of package
+//							distance			-distance the package is traveling
+//							cost					-cost of shipment 
 //
 // Returned:		none
 //***************************************************************************

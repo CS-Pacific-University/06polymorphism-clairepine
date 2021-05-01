@@ -15,24 +15,46 @@
 // Description:	Call the Parcel default constructor, initialize the variables
 //							with parameters
 //
-// Parameters:
+// Parameters:	none
 //
 // Returned:		none
 //***************************************************************************
-Letter::Letter() {
+Letter::Letter() : Parcel() {
+
 }
 
 //***************************************************************************
-// Function:
+// Function:		getDeliveryDay
 //
-// Description:
+// Description:	Gets the expected delivery date for the letter.
 //
-// Parameters:
+// Parameters:	none
 //
-// Returned:
+// Returned:		
 //***************************************************************************
 int Letter::getDeliveryDay() const {
-	return 0;
+	const int MILES = 100;
+	const int ONE = 1;
+
+	int deliveryDay = 0;
+	int distance = getDistance(); 
+	bool bRush = getRush(); 
+	
+	deliveryDay = distance / MILES;
+
+	if (distance % MILES != 0) {
+		deliveryDay++;
+	}
+
+	if (bRush = true) {
+		deliveryDay -= ONE; 
+	}
+
+	if (deliveryDay < ONE) {
+		deliveryDay = ONE; 
+	}
+
+	return deliveryDay;
 }
 
 //***************************************************************************
@@ -62,14 +84,18 @@ double Letter::setRush(bool rush) {
 }
 
 //***************************************************************************
-// Function:
+// Function:		read
 //
-// Description:
+// Description:	Calls read from Parcel
 //
-// Parameters:
+// Parameters:	rcIn		- the stream to read in from
 //
-// Returned:
+// Returned:		bVal - true or false
 //***************************************************************************
 bool Letter::read(istream& rcIn) {
-	return false;
+	bool bVal = true;
+
+	Parcel::read(rcIn);
+
+	return bVal;
 }

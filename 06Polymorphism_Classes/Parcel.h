@@ -14,6 +14,7 @@ using namespace std;
 
 class Parcel {
 	public:
+		Parcel(); 
 		Parcel (int trackingId, string to, string from, int weight, int distance,
 						double cost);
 		int getWeight() const;
