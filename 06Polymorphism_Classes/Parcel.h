@@ -14,8 +14,8 @@ using namespace std;
 
 class Parcel {
 	public:
-		Parcel ();
-
+		Parcel (int trackingId, string to, string from, int weight, int distance,
+						double cost);
 		int getWeight() const;
 		int getDistance() const;
 		bool getInsured() const;
@@ -28,7 +28,7 @@ class Parcel {
 		virtual void print(ostream& rcOut) const;
 
 		virtual double getCost() const;
-		virtual int getDeliveryDay() const;
+		virtual int getDeliveryDay() const = 0;
 
 	private:
 		int mTrackingId;

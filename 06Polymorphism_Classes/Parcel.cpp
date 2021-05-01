@@ -19,7 +19,21 @@
 //
 // Returned:		none
 //***************************************************************************
-Parcel::Parcel() {
+Parcel::Parcel(int trackingId, std::string to, std::string from,
+							int weight, int distance, double cost) {
+
+	mTrackingId = trackingId;
+	mTo = to;
+	mFrom = from;
+
+	mWeight = weight;
+	mDistance = distance;
+
+	mCost = cost;
+
+	mbInsured = false;
+	mbRush = false;
+	mbDelivered = false;
 
 }
 
@@ -47,7 +61,8 @@ int Parcel::getWeight() const {
 // Returned:		mDistance
 //***************************************************************************
 int Parcel::getDistance() const {
-	return 0;
+
+	return mDistance;
 }
 
 //***************************************************************************
@@ -60,7 +75,8 @@ int Parcel::getDistance() const {
 // Returned:		mbInsured
 //***************************************************************************
 bool Parcel::getInsured() const {
-	return false;
+
+	return mbInsured;
 }
 
 //***************************************************************************
@@ -73,7 +89,8 @@ bool Parcel::getInsured() const {
 // Returned:		mbRush
 //***************************************************************************
 bool Parcel::getRush() const {
-	return false;
+
+	return mbRush;
 }
 
 //***************************************************************************
@@ -86,7 +103,8 @@ bool Parcel::getRush() const {
 // Returned:		mTrackingId
 //***************************************************************************
 int Parcel::getTid() const {
-	return 0;
+
+	return mTrackingId; 
 }
 
 //***************************************************************************
@@ -99,6 +117,8 @@ int Parcel::getTid() const {
 // Returned:		none
 //***************************************************************************
 void Parcel::setCost(double cost) {
+
+	mCost = cost;
 }
 
 //***************************************************************************
@@ -111,7 +131,18 @@ void Parcel::setCost(double cost) {
 // Returned:		bVal		-if the data is correct or not
 //***************************************************************************
 bool Parcel::read(istream& rcIn) {
-	return false;
+	bool bVal = true;
+
+	rcIn >> mTrackingId;
+	rcIn >> mTo;
+	rcIn >> mFrom;
+
+	rcIn >> mWeight;
+	rcIn >> mDistance;
+
+	rcIn >> mCost;
+
+	return bVal;
 }
 
 //***************************************************************************
@@ -124,6 +155,9 @@ bool Parcel::read(istream& rcIn) {
 // Returned:		none
 //***************************************************************************
 void Parcel::print(ostream& rcOut) const {
+
+	rcOut << "TID: " << mTrackingId << "\t" << "From: " << mFrom << "\t"
+		<< "To: " << mTo;
 }
 
 //***************************************************************************
@@ -136,18 +170,6 @@ void Parcel::print(ostream& rcOut) const {
 // Returned:		mCost
 //***************************************************************************
 double Parcel::getCost() const {
-	return 0.0;
-}
 
-//***************************************************************************
-// Function:		getDeliveryDay
-//
-// Description:	Returns the date for expected delivery
-//
-// Parameters:	none
-//
-// Returned:		date
-//***************************************************************************
-int Parcel::getDeliveryDay() const {
-	return 0;
+	return mCost;
 }
