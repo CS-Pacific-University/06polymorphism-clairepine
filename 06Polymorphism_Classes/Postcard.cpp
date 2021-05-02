@@ -24,16 +24,38 @@ Postcard::Postcard() : Parcel (), mMessage(0) {
 }
 
 //***************************************************************************
-// Function:
+// Function:		getDeliveryDate
 //
-// Description:
+// Description:	Gets the expected delivery date for the postcard
 //
-// Parameters:
+// Parameters:	none
 //
-// Returned:
+// Returned:		deliveryDay
 //***************************************************************************
 int Postcard::getDeliveryDate() const {
-	return 0;
+	const int MILES = 10;
+	const int TWO = 2;
+	const int ONE = 1;
+
+	int deliveryDay = 0;
+	int distance = getDistance();
+	bool bRush = getRush();
+
+	deliveryDay = distance / MILES;
+
+	if (distance % MILES != 0) {
+		deliveryDay++;
+	}
+
+	if (bRush == true) {
+		deliveryDay -= TWO;
+	}
+
+	if (deliveryDay < ONE) {
+		deliveryDay = ONE;
+	}
+
+	return deliveryDay;
 }
 
 //***************************************************************************

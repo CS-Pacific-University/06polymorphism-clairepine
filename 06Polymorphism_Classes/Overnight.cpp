@@ -24,22 +24,42 @@ Overnight::Overnight() : Parcel (), mVolume (0) {
 }
 
 //***************************************************************************
-// Function:
+// Function:		getDeliveryDay
 //
-// Description:
+// Description:	Gets expected delivery day for overnight shipping
 //
-// Parameters:
+// Parameters:	none
 //
-// Returned:
+// Returned:		deliveryDay
 //***************************************************************************
 int Overnight::getDeliveryDay() const {
-	return 0;
+	const int MILES = 1000;
+	const int ONE = 1;
+	const int TWO = 2;
+
+	int deliveryDay = 0;
+	int distance = getDistance();
+	bool bRush = getRush();
+
+	if (distance <= MILES) {
+		deliveryDay = ONE;
+	}
+
+	if (distance > MILES) {
+		deliveryDay = TWO;
+	}
+
+	if (bRush == true) {
+		deliveryDay = ONE;
+	}
+
+	return deliveryDay;
 }
 
 //***************************************************************************
-// Function:
+// Function:		setInsured
 //
-// Description:
+// Description:	
 //
 // Parameters:
 //
@@ -50,7 +70,7 @@ double Overnight::setInsured(bool insured) {
 }
 
 //***************************************************************************
-// Function:
+// Function:		setRush
 //
 // Description:
 //
