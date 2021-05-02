@@ -19,7 +19,7 @@
 //
 // Returned:		none
 //***************************************************************************
-Postcard::Postcard() : Parcel (), mMessage(0) {
+Postcard::Postcard() : Parcel (), mMessage("") {
 
 }
 
@@ -65,10 +65,11 @@ int Postcard::getDeliveryDate() const {
 //
 // Parameters:	none
 //
-// Returned:
+// Returned:		cost
 //***************************************************************************
 double Postcard::getCost() const {
-	return 0.0;
+
+	return Parcel::getCost(); 
 }
 
 //***************************************************************************
@@ -82,13 +83,20 @@ double Postcard::getCost() const {
 //***************************************************************************
 double Postcard::setInsured(bool insured) {
 	const double POSTCARD_INSURANCE = 0.15;
+	const int ZERO = 0;
 
-	insured = getInsured();
 	double postcardInsurance = 0.0;
 
-	if (insured == true) {
-		postcardInsurance = POSTCARD_INSURANCE;
+	if (insured) {
+		postcardInsurance = ZERO;
 	}
+
+	if (!insured) {
+		postcardInsurance = POSTCARD_INSURANCE;
+		mbInsured = true;
+	}
+
+	setCost(Parcel::getCost() + postcardInsurance);
 
 	return postcardInsurance;
 }
@@ -104,14 +112,23 @@ double Postcard::setInsured(bool insured) {
 //***************************************************************************
 double Postcard::setRush(bool rush) {
 	const double RUSH_PRICE = 0.25;
+	const int ZERO = 0;
 
-	rush = getRush();
 	double cost = getCost();
-	double rushPrice = 0.0;
+	double rushPrice;
 
-	if (rush == true) {
-		rushPrice = RUSH_PRICE;
+	if (rush) {
+		rushPrice = ZERO;
 	}
+
+	if (!rush) {
+		rushPrice = RUSH_PRICE;
+		cost += rushPrice;
+		setCost(cost);
+		mbRush = true;
+	}
+
+	setCost(Parcel::getCost() + rushPrice);
 
 	return rushPrice;
 }

@@ -40,6 +40,7 @@ class Parcel {
 
 		double mCost;
 
+	protected:
 		bool mbInsured;
 		bool mbRush;
 		bool mbDelivered;

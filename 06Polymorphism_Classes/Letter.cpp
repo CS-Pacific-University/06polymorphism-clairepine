@@ -68,12 +68,17 @@ int Letter::getDeliveryDay() const {
 //***************************************************************************
 double Letter::setInsured(bool insured) {
 	const double LETTER_INSURANCE = 0.45;
-	
-	insured = getInsured();
+	const int ZERO = 0;
+
 	double letterInsurance = 0.0; 
 
-	if (insured == true) {
-		letterInsurance = LETTER_INSURANCE; 
+	if (insured) {
+		letterInsurance = ZERO; 
+	}
+
+	if (!insured) {
+		letterInsurance = LETTER_INSURANCE;
+		mbInsured = true;
 	}
 
 	return letterInsurance;
@@ -90,13 +95,20 @@ double Letter::setInsured(bool insured) {
 //***************************************************************************
 double Letter::setRush(bool rush) {
 	const int TEN_PERCENT = 10;
+	const int ZERO = 0;
 
-	rush = getRush();
 	double cost = getCost();  
 	double rushPrice = 0.0;
 
-	if (rush == true) {
+	if (rush) {
+		rushPrice = ZERO;
+	}
+
+	if (!rush) {
 		rushPrice = cost / TEN_PERCENT; 
+		cost += rushPrice;
+		setCost(cost);
+		mbRush = true; 
 	}
 
 	return rushPrice;

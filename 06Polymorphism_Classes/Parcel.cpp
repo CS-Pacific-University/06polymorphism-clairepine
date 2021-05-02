@@ -20,6 +20,20 @@
 // Returned:		none
 //***************************************************************************
 Parcel::Parcel() {
+	const int ZERO = 0;
+
+	mTrackingId = ZERO;
+	mTo = "";
+	mFrom = "";
+
+	mWeight = ZERO;
+	mDistance = ZERO;
+
+	mCost = ZERO;
+
+	mbInsured = false;
+	mbRush = false;
+	mbDelivered = false;
 
 }
 
