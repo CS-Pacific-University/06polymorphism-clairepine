@@ -59,11 +59,11 @@ int Postcard::getDeliveryDate() const {
 }
 
 //***************************************************************************
-// Function:
+// Function:		getCost
 //
-// Description:
+// Description:	Determines the cost of shipping a postcard
 //
-// Parameters:
+// Parameters:	none
 //
 // Returned:
 //***************************************************************************
@@ -72,29 +72,48 @@ double Postcard::getCost() const {
 }
 
 //***************************************************************************
-// Function:
+// Function:		setInsured
 //
-// Description:
+// Description:	Sets the insurance price for a postcard
 //
-// Parameters:
+// Parameters:	insured		- if it's insured or not
 //
-// Returned:
+// Returned:		postcardInsurance
 //***************************************************************************
 double Postcard::setInsured(bool insured) {
-	return 0.0;
+	const double POSTCARD_INSURANCE = 0.15;
+
+	insured = getInsured();
+	double postcardInsurance = 0.0;
+
+	if (insured == true) {
+		postcardInsurance = POSTCARD_INSURANCE;
+	}
+
+	return postcardInsurance;
 }
 
 //***************************************************************************
-// Function:
+// Function:		setRush
 //
-// Description:
+// Description:	Sets the rush price for a postcard
 //
-// Parameters:
+// Parameters:	rush		- if it has rush delivery or not
 //
-// Returned:
+// Returned:		rushPrice
 //***************************************************************************
 double Postcard::setRush(bool rush) {
-	return 0.0;
+	const double RUSH_PRICE = 0.25;
+
+	rush = getRush();
+	double cost = getCost();
+	double rushPrice = 0.0;
+
+	if (rush == true) {
+		rushPrice = RUSH_PRICE;
+	}
+
+	return rushPrice;
 }
 
 //***************************************************************************
