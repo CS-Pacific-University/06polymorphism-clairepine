@@ -59,27 +59,63 @@ int Overnight::getDeliveryDay() const {
 //***************************************************************************
 // Function:		setInsured
 //
-// Description:	
+// Description:	Sets the price for overnight insurance
 //
-// Parameters:
+// Parameters:	insured		- if insured or not
 //
-// Returned:
+// Returned:		overnightInsurance
 //***************************************************************************
 double Overnight::setInsured(bool insured) {
-	return 0.0;
+	const double OVERNIGHT_INSURANCE = 0.25;
+	const int ZERO = 0;
+
+	double cost = getCost(); 
+	double overnightInsurance = 0.0;
+
+	if (insured) {
+		overnightInsurance = ZERO;
+	}
+
+	if (!insured) {
+		overnightInsurance = cost * OVERNIGHT_INSURANCE;
+		mbInsured = true;
+	}
+
+	setCost(Parcel::getCost() + overnightInsurance);
+
+	return overnightInsurance;
 }
 
 //***************************************************************************
 // Function:		setRush
 //
-// Description:
+// Description:	Sets the price for an overnight rush
 //
-// Parameters:
+// Parameters:	rush		- if the package is rushed or not
 //
-// Returned:
+// Returned:		rushPrice
 //***************************************************************************
 double Overnight::setRush(bool rush) {
-	return 0.0;
+	const double RUSH_PRICE = 0.75;
+	const int ZERO = 0;
+
+	double cost = getCost();
+	double rushPrice;
+
+	if (rush) {
+		rushPrice = ZERO;
+	}
+
+	if (!rush) {
+		rushPrice = cost * RUSH_PRICE;
+		cost += rushPrice;
+		setCost(cost);
+		mbRush = true;
+	}
+
+	setCost(Parcel::getCost() + rushPrice);
+
+	return rushPrice;
 }
 
 //***************************************************************************

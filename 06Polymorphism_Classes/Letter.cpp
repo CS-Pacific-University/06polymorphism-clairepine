@@ -81,6 +81,8 @@ double Letter::setInsured(bool insured) {
 		mbInsured = true;
 	}
 
+	setCost(Parcel::getCost() + letterInsurance);
+
 	return letterInsurance;
 }
 
@@ -94,7 +96,7 @@ double Letter::setInsured(bool insured) {
 // Returned:		rushPrice
 //***************************************************************************
 double Letter::setRush(bool rush) {
-	const int TEN_PERCENT = 10;
+	const int TEN_PERCENT = 0.10;
 	const int ZERO = 0;
 
 	double cost = getCost();  
@@ -105,11 +107,13 @@ double Letter::setRush(bool rush) {
 	}
 
 	if (!rush) {
-		rushPrice = cost / TEN_PERCENT; 
+		rushPrice = cost * TEN_PERCENT; 
 		cost += rushPrice;
 		setCost(cost);
 		mbRush = true; 
 	}
+
+	setCost(Parcel::getCost() + rushPrice);
 
 	return rushPrice;
 }
