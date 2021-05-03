@@ -18,14 +18,13 @@
 using namespace std;
 
 void drawHeading(string title);
-void menu();
-int tIdCheck(int size, int userInput);  
+void menu(int &userInput);
 bool openFileForRead(ifstream& inputFile, string fileName,
   Parcel* apcParcels[], int &size);
 void printAll(Parcel* apcParcels[], int size); 
-bool addInsurance(Parcel* apcParcels);
-bool addRush(Parcel* apcParcels);
-void deliver(Parcel* apcParcels); 
+bool addInsurance(Parcel* apcParcels[], int size);
+bool addRush(Parcel* apcParcels[], int size);
+void deliver(Parcel* apcParcels[], int size); 
 void closeFileForRead(ifstream& inputFile);
 
 //***************************************************************************
@@ -43,11 +42,18 @@ int main() {
   const string TITLE_STRING = "Mail Simulator!";
   const string FILE_NAME = "parcels.txt";
   const int MAX_SIZE = 25;
+  const int MIN_SIZE = 0;
+
+  const int OPTION_ONE = 1;
+  const int OPTION_TWO = 2;
+  const int OPTION_THREE = 3;
+  const int OPTION_FOUR = 4;
   const int OPTION_FIVE = 5;
 
   Parcel* apcParcels[25];
   int size = 0;
   int option = 0;
+  int trackId;
   ifstream inFile;
 
   if (!openFileForRead(inFile, FILE_NAME, apcParcels, size)) {
@@ -55,36 +61,49 @@ int main() {
     return EXIT_FAILURE;
   }
 
-  //do {
-    menu();
+    menu(option);
 
-    switch(option) {
-      case 1: printAll(apcParcels, size); 
-        break;
+    if (option = OPTION_ONE) {
+      printAll(apcParcels, size);
     }
-    /*switch (option) {
-      case 2:  
+
+    // error handling with TID
+
+    if (option == OPTION_TWO || option == OPTION_THREE ||
+      option == OPTION_FOUR) {
+
+      do {
         cout << "TID> ";
-        cin >> tId;
+        cin >> trackId;
 
-        if (tId > size || tId < size) {
-        menu();
-      }
-        break;
+        if (trackId > MAX_SIZE || trackId < MIN_SIZE) {
+          menu();
+          cout << "TID> ";
+          cin >> trackId;
+         }
+
+       } while (trackId > MAX_SIZE || trackId < MIN_SIZE);
+    } 
+
+    if (option = OPTION_TWO) {
+      addInsurance(apcParcels, size); 
     }
-    switch(option) {
-      case 3:
-        break;
+
+    if (option = OPTION_THREE) {
+      addRush(apcParcels, size);
     }
-    switch (option) {
-      case 4:
-        break;
+    
+    if (option = OPTION_FOUR) {
+      deliver(apcParcels, size);
     }
-    switch (option) {
-    case 5:
-      break;
+
+    if (option = OPTION_FIVE) {
+      return EXIT_SUCCESS;
     }
-  } while (option != OPTION_FIVE);*/
+
+    closeFileForRead(inFile); 
+
+    delete [] apcParcels; 
 
   cout << "Reached the end!\n"; 
   return EXIT_SUCCESS;
@@ -114,7 +133,7 @@ void drawHeading(string title) {
 //
 // Returned:    
 //***************************************************************************
-void menu() {
+void menu(int &userInput) {
   const int FIVE = 5;
   const int ONE = 1;
 
@@ -131,35 +150,6 @@ void menu() {
     cin >> userInput;
   } while (userInput > FIVE || userInput < ONE);
 
-}
-
-//***************************************************************************
-// Function:    
-//
-// Description: 
-//
-// Parameters:  
-//
-// Returned:    
-//***************************************************************************
-int tId(int size, int userInput) {
-  
-  const int TWO = 2;
-  const int THREE = 3;
-  const int FOUR = 4;
-
-  if (userInput = TWO || userInput = THREE || userInput || FOUR) {
-    cout << "TID> ";
-    cin >> tId;
-
-    if (tId > size || tId < size) {
-      menu();
-      cout << "TID> ";
-      cin >> tId;
-    }
-  }
-
-  return tId;
 }
 
 //***************************************************************************
@@ -239,7 +229,7 @@ void printAll(Parcel* apcParcels[], int size) {
 //
 // Returned:    
 //***************************************************************************
-bool addInsurance(Parcel* apcParcels, int tId, int size) {
+bool addInsurance(Parcel* apcParcels[], int size) {
   bool bVal = true;
   int anInt;
   
@@ -265,7 +255,7 @@ bool addInsurance(Parcel* apcParcels, int tId, int size) {
 //
 // Returned:    bVal
 //***************************************************************************
-bool addRush(Parcel* apcParcels, int tId) {
+bool addRush(Parcel* apcParcels[], int size) {
   bool bVal = true;
 
 
@@ -282,7 +272,7 @@ bool addRush(Parcel* apcParcels, int tId) {
 //
 // Returned:    
 //***************************************************************************
-void deliver(Parcel* apcParcels) {
+void deliver(Parcel* apcParcels[], int size) {
 
 }
 
