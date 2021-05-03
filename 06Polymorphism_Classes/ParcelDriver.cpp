@@ -19,6 +19,7 @@ using namespace std;
 
 void drawHeading(string title);
 void menu();
+int tIdCheck(int size, int userInput);  
 bool openFileForRead(ifstream& inputFile, string fileName,
   Parcel* apcParcels[], int &size);
 void printAll(Parcel* apcParcels[], int size); 
@@ -46,7 +47,7 @@ int main() {
 
   Parcel* apcParcels[25];
   int size = 0;
-  int option;
+  int option = 0;
   ifstream inFile;
 
   if (!openFileForRead(inFile, FILE_NAME, apcParcels, size)) {
@@ -62,7 +63,13 @@ int main() {
         break;
     }
     /*switch (option) {
-      case 2:
+      case 2:  
+        cout << "TID> ";
+        cin >> tId;
+
+        if (tId > size || tId < size) {
+        menu();
+      }
         break;
     }
     switch(option) {
@@ -124,6 +131,35 @@ void menu() {
     cin >> userInput;
   } while (userInput > FIVE || userInput < ONE);
 
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+int tId(int size, int userInput) {
+  
+  const int TWO = 2;
+  const int THREE = 3;
+  const int FOUR = 4;
+
+  if (userInput = TWO || userInput = THREE || userInput || FOUR) {
+    cout << "TID> ";
+    cin >> tId;
+
+    if (tId > size || tId < size) {
+      menu();
+      cout << "TID> ";
+      cin >> tId;
+    }
+  }
+
+  return tId;
 }
 
 //***************************************************************************
@@ -203,9 +239,21 @@ void printAll(Parcel* apcParcels[], int size) {
 //
 // Returned:    
 //***************************************************************************
-bool addInsurance(Parcel* apcParcels) {
-
-  return false;
+bool addInsurance(Parcel* apcParcels, int tId, int size) {
+  bool bVal = true;
+  int anInt;
+  
+  for (int i = 0; i < size; i++) {
+    if (!apcParcels[i]) {
+      bVal = false;
+    }
+    if () {
+      cout << "Added Insurance for ";
+      apcParcles[i].getInsurance();
+    }
+  }
+  
+  return bVal;
 }
 
 //***************************************************************************
@@ -215,11 +263,14 @@ bool addInsurance(Parcel* apcParcels) {
 //
 // Parameters:  apcParcels    - array of Parcels
 //
-// Returned:    
+// Returned:    bVal
 //***************************************************************************
-bool addRush(Parcel* apcParcels) {
+bool addRush(Parcel* apcParcels, int tId) {
+  bool bVal = true;
 
-  return false;
+
+
+  return bVal;
 }
 
 //***************************************************************************
