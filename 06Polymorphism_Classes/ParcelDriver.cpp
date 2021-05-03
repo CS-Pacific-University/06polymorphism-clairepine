@@ -22,9 +22,9 @@ void menu(int &userInput);
 bool openFileForRead(ifstream& inputFile, string fileName,
   Parcel* apcParcels[], int &size);
 void printAll(Parcel* apcParcels[], int size); 
-bool addInsurance(Parcel* apcParcels[], int size);
-bool addRush(Parcel* apcParcels[], int size);
-void deliver(Parcel* apcParcels[], int size); 
+//bool addInsurance(Parcel* apcParcels[], int size);
+//bool addRush(Parcel* apcParcels[], int size);
+//void deliver(Parcel* apcParcels[], int size); 
 void closeFileForRead(ifstream& inputFile);
 
 //***************************************************************************
@@ -53,7 +53,7 @@ int main() {
   Parcel* apcParcels[25];
   int size = 0;
   int option = 0;
-  int trackId;
+  //int trackId;
   ifstream inFile;
 
   if (!openFileForRead(inFile, FILE_NAME, apcParcels, size)) {
@@ -63,13 +63,13 @@ int main() {
 
     menu(option);
 
-    if (option = OPTION_ONE) {
+    if (option == OPTION_ONE) {
       printAll(apcParcels, size);
     }
 
     // error handling with TID
 
-    if (option == OPTION_TWO || option == OPTION_THREE ||
+   /* if (option == OPTION_TWO || option == OPTION_THREE ||
       option == OPTION_FOUR) {
 
       do {
@@ -95,15 +95,15 @@ int main() {
     
     if (option = OPTION_FOUR) {
       deliver(apcParcels, size);
-    }
+    }*/
 
-    if (option = OPTION_FIVE) {
+    if (option == OPTION_FIVE) {
       return EXIT_SUCCESS;
     }
 
     closeFileForRead(inFile); 
 
-    delete [] apcParcels; 
+    // delete [] apcParcels; 
 
   cout << "Reached the end!\n"; 
   return EXIT_SUCCESS;
@@ -112,11 +112,11 @@ int main() {
 //***************************************************************************
 // Function:    drawHeading
 //
-// Description: 
+// Description: Prints heading to the screen
 //
-// Parameters:  
+// Parameters:  title   - title for assignment
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void drawHeading(string title) {
 
@@ -127,23 +127,21 @@ void drawHeading(string title) {
 //***************************************************************************
 // Function:    menu
 //
-// Description: 
+// Description: Prints out menu to screen and does some error handling
 //
-// Parameters:  
+// Parameters:  userInput   - users choice from the menu
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void menu(int &userInput) {
   const int FIVE = 5;
   const int ONE = 1;
 
-  int userInput;
-
   cout << "1. Print All" << endl;
   cout << "2. Add Insurance" << endl;
   cout << "3. Add Rush" << endl;
   cout << "4. Deliver" << endl;
-  cout << "5. Quit" << endl;
+  cout << "5. Quit" << endl << endl;
 
   do {
     cout << "Choice> ";
@@ -206,11 +204,11 @@ bool openFileForRead(ifstream& inputFile, string fileName,
 //***************************************************************************
 // Function:    printAll
 //
-// Description: 
+// Description: Prints the data read in from the file
 //
-// Parameters: 
+// Parameters:  apcParcels    - array of different packages
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void printAll(Parcel* apcParcels[], int size) {
 
@@ -227,25 +225,13 @@ void printAll(Parcel* apcParcels[], int size) {
 //
 // Parameters:  apcParcels    - Parcel array
 //
-// Returned:    
+// Returned:    bVal
 //***************************************************************************
 bool addInsurance(Parcel* apcParcels[], int size) {
   bool bVal = true;
-  int anInt;
-  
-  for (int i = 0; i < size; i++) {
-    if (!apcParcels[i]) {
-      bVal = false;
-    }
-    if () {
-      cout << "Added Insurance for ";
-      apcParcles[i].getInsurance();
-    }
-  }
-  
+
   return bVal;
 }
-
 //***************************************************************************
 // Function:    addRush
 //
@@ -255,13 +241,13 @@ bool addInsurance(Parcel* apcParcels[], int size) {
 //
 // Returned:    bVal
 //***************************************************************************
-bool addRush(Parcel* apcParcels[], int size) {
-  bool bVal = true;
-
-
-
-  return bVal;
-}
+//bool addRush(Parcel* apcParcels[], int size) {
+//  bool bVal = true;
+//
+//
+//
+//  return bVal;
+//}
 
 //***************************************************************************
 // Function:    deliver
@@ -270,11 +256,11 @@ bool addRush(Parcel* apcParcels[], int size) {
 //
 // Parameters:  apcParcels    - array of Parcels
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
-void deliver(Parcel* apcParcels[], int size) {
-
-}
+//void deliver(Parcel* apcParcels[], int size) {
+//
+//}
 
 //***************************************************************************
 // Function:    closeFileForRead
@@ -287,6 +273,6 @@ void deliver(Parcel* apcParcels[], int size) {
 //***************************************************************************
 void closeFileForRead(ifstream& inputFile) {
 
-  inputFile.close();
+  inputFile.close(); 
 
 }

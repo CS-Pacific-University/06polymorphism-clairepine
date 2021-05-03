@@ -96,7 +96,7 @@ double Letter::setInsured(bool insured) {
 // Returned:		rushPrice
 //***************************************************************************
 double Letter::setRush(bool rush) {
-	const int TEN_PERCENT = 0.10;
+	const double TEN_PERCENT = 0.10;
 	const int ZERO = 0;
 
 	double cost = getCost();  

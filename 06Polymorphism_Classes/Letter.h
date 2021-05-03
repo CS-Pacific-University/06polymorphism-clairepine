@@ -8,7 +8,7 @@
 //***************************************************************************
 #pragma once
 
-#include "Parcel.h";
+#include "Parcel.h"
 #include <iostream>
 
 using namespace std;
