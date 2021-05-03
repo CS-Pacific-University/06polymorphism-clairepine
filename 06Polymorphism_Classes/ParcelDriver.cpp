@@ -54,14 +54,14 @@ int main() {
     return EXIT_FAILURE;
   }
 
-  do {
+  //do {
     menu();
 
     switch(option) {
       case 1: printAll(apcParcels, size); 
         break;
     }
-    switch (option) {
+    /*switch (option) {
       case 2:
         break;
     }
