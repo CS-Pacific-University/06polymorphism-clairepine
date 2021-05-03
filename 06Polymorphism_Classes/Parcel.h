@@ -29,7 +29,7 @@ class Parcel {
 		virtual void print(ostream& rcOut) const;
 
 		virtual double getCost() const;
-		virtual int getDeliveryDay() const = 0;
+		virtual int getDeliveryDay() const;
 
 	private:
 		int mTrackingId;

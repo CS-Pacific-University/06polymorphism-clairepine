@@ -205,3 +205,17 @@ double Parcel::getCost() const {
 
 	return mCost;
 }
+
+//***************************************************************************
+// Function:		getDeliveryDay
+//
+// Description:	Returns the number of days for delivery
+//
+// Parameters:	none
+//
+// Returned:		0
+//***************************************************************************
+int Parcel::getDeliveryDay() const {
+
+	return 0;
+}

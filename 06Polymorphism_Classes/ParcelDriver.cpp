@@ -17,7 +17,10 @@
 
 using namespace std;
 
-// bool openFileForRead
+void drawHeading(string title);
+void menu();
+bool openFileForRead(ifstream& inputFile, string fileName,
+  Parcel* apcParcels);
 // print function
 void closeFileForRead(ifstream& inputFile);
 
@@ -33,14 +36,71 @@ void closeFileForRead(ifstream& inputFile);
 
 int main() {
 
+  const string TITLE_STRING = "Mail Simulator!";
   const string FILE_NAME = "parcels.txt";
+  const int MAX_SIZE = 25;
+
+  Parcel* apcParcels = new Parcel[MAX_SIZE]; 
 
   ifstream inFile;
+
+  if (!openFileForRead(inFile, FILE_NAME, apcParcels)) {
+    
+    return EXIT_FAILURE;
+  }
 
   cout << "Reached the end!\n"; 
   return EXIT_SUCCESS;
 }
 
+//***************************************************************************
+// Function:    drawHeading
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+void drawHeading(string title) {
+
+  cout << title << endl << endl;
+
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+void menu() {
+}
+
+//***************************************************************************
+// Function:    openFileForRead
+//
+// Description: opens file "parcels.txt"
+//
+// Parameters:  inputFile   -file read in from main
+//
+// Returned:    none
+//***************************************************************************
+bool openFileForRead(ifstream& inputFile, string fileName, 
+  Parcel* apcParcels) {
+
+  bool bVal = true;
+
+  inputFile.open(fileName);
+  if (!inputFile.is_open()) {
+    cout << "Cannot oepn file";
+  }
+
+  return bVal;
+}
 
 //***************************************************************************
 // Function:    closeFileForRead
