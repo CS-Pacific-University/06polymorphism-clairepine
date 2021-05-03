@@ -172,8 +172,6 @@ bool Parcel::read(istream& rcIn) {
 	rcIn >> mWeight;
 	rcIn >> mDistance;
 
-	rcIn >> mCost;
-
 	return bVal;
 }
 
