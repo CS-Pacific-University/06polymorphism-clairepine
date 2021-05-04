@@ -30,6 +30,8 @@ class Parcel {
 		virtual void print(ostream& rcOut) const;
 
 		virtual double getCost() const;
+		virtual double setInsured(bool insured); 
+		virtual double setRush(bool rush); 
 		virtual int getDeliveryDay() const;
 
 	private:

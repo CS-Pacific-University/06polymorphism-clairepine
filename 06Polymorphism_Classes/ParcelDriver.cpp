@@ -76,7 +76,7 @@ int main() {
         cout << "TID> ";
         cin >> trackingId;
 
-        if (trackingId > MAX_SIZE || trackingId < MIN_SIZE) {
+        if (trackingId > size || trackingId < size) {
           menu(option);
           cout << "TID> ";
           cin >> trackingId;
@@ -93,9 +93,9 @@ int main() {
       addRush(apcParcels, size, trackingId);
     }
 
-    if (option = OPTION_FOUR) {
+    /*if (option = OPTION_FOUR) {
       deliver(apcParcels, size, trackingId);
-    }
+    }*/
 
     if (option == OPTION_FIVE) {
       return EXIT_SUCCESS;
@@ -147,6 +147,7 @@ void menu(int &option) {
   do {
     cout << "Choice> ";
     cin >> option;
+    cout << endl;
   } while (option > FIVE || option < ONE);
 
 }
@@ -220,6 +221,9 @@ void printAll(Parcel* apcParcels[], int size) {
     apcParcels[i]->print(cout);
     cout << endl;
   }
+
+  cout << endl;
+
 }
 
 //***************************************************************************
@@ -239,19 +243,20 @@ bool addInsurance(Parcel* apcParcels[], int size, int trackingId) {
   const int NEG_ONE = -1;
   const int TWENTY_SIX = 26;
 
-  int anInt;
+  int index;
 
-  anInt = findIndex(trackingId, size, apcParcels);
+  index = findIndex(trackingId, size, apcParcels);
 
-    if (anInt > NEG_ONE || anInt < TWENTY_SIX) {
+    if (index > NEG_ONE || index < TWENTY_SIX) {
       bVal = true;
       cout << "Added Insurance for ";
-      apcParcels[anInt]->getInsured();
-     // cout << apcParcels[anInt]->setInsured(getInsured()); 
 
-      apcParcels[anInt]->print(cout); 
+      apcParcels[index]->setInsured(apcParcels[index]->getInsured()); 
 
-      if (!apcParcels[anInt]) {
+      apcParcels[index]->print(cout);
+      cout << endl;
+
+      if (!apcParcels[index]) {
         bVal = false;
       }
   }
@@ -276,18 +281,20 @@ bool addRush(Parcel* apcParcels[], int size, int trackingId) {
   const int NEG_ONE = -1;
   const int TWENTY_SIX = 26;
 
-  int anInt;
+  int index;
 
-  anInt = findIndex(trackingId, size, apcParcels);
+  index = findIndex(trackingId, size, apcParcels);
 
-  if (anInt > NEG_ONE || anInt < TWENTY_SIX) {
+  if (index > NEG_ONE || index < TWENTY_SIX) {
     bVal = true;
     cout << "Added Rush for ";
-    cout << apcParcels[anInt]->getRush();
+    apcParcels[index]->setRush(apcParcels[index]->getRush());
+    cout << endl;
 
-    apcParcels[anInt]->print(cout);
+    apcParcels[index]->print(cout);
+    cout << endl;
 
-    if (!apcParcels[anInt]) {
+    if (!apcParcels[index]) {
       bVal = false;
     }
   }
@@ -306,25 +313,25 @@ bool addRush(Parcel* apcParcels[], int size, int trackingId) {
 //
 // Returned:    none
 //***************************************************************************
-void deliver(Parcel* apcParcels[], int size, int trackingId) {
+//void deliver(Parcel* apcParcels[], int size, int trackingId) {
 
-  const int NEG_ONE = -1;
+ /* const int NEG_ONE = -1;
   const int TWENTY_SIX = 26;
 
   int anInt;
 
-  anInt = findIndex(trackingId, size, apcParcels);
+  anInt = findIndex(trackingId, size, apcParcels);*/
 
-  if (anInt > NEG_ONE || anInt < TWENTY_SIX) {
-    cout << "Delivered!";
-    cout << apcParcels[anInt]->getDeliveryDay() << "Day,";
-    //cout << price
+  //if (anInt > NEG_ONE || anInt < TWENTY_SIX) {
+  //  cout << "Delivered!";
+  //  cout << apcParcels[anInt]->getDeliveryDay() << "Day,";
+  //  //cout << price
 
-    apcParcels[anInt]->print(cout);
+  //  apcParcels[anInt]->print(cout);
 
-    apcParcels[anInt] = nullptr;
-
-}
+  //  apcParcels[anInt] = nullptr;
+  //}
+//}
 
 //***************************************************************************
 // Function:    closeFileForRead
@@ -335,11 +342,11 @@ void deliver(Parcel* apcParcels[], int size, int trackingId) {
 //
 // Returned:    none
 //***************************************************************************
-void closeFileForRead(ifstream& inputFile) { 
+  void closeFileForRead(ifstream & inputFile) {
+  
+    inputFile.close(); 
 
-  inputFile.close(); 
-
-}
+  }
 
 //***************************************************************************
 // Function:    findIndex

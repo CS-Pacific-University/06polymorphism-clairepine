@@ -128,11 +128,12 @@ bool Parcel::getRush() const {
 //***************************************************************************
 // Function:		isMatch
 //
-// Description:	
+// Description:	Finds the parcel with the same trackigId and returns true 
+//							or false.
 //
-// Parameters:	
+// Parameters:	trackingId		- the number for tracking the parcel
 //
-// Returned:		
+// Returned:		bVal
 //***************************************************************************
 bool Parcel::isMatch(int trackingId) const {
 	bool bVal = false;
@@ -221,6 +222,34 @@ void Parcel::print(ostream& rcOut) const {
 double Parcel::getCost() const {
 
 	return mCost;
+}
+
+//***************************************************************************
+// Function:		setInsured
+//
+// Description:	Sets the amount for having the letter insured
+//
+// Parameters:	insured		-if insured or not
+//
+// Returned:		letterInsurance
+//***************************************************************************
+double Parcel::setInsured(bool insured) {
+
+	return 0.0;
+}
+
+//***************************************************************************
+// Function:		setRush
+//
+// Description:	Sets the amount for having a rush for delivery day
+//
+// Parameters:	rush		-if it has rush delivery or not
+//
+// Returned:		rushPrice
+//***************************************************************************
+double Parcel::setRush(bool rush) {
+
+	return 0.0;
 }
 
 //***************************************************************************
