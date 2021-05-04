@@ -128,7 +128,7 @@ void drawHeading(string title) {
 //
 // Description: Prints out menu to screen and does some error handling
 //
-// Parameters:  userInput   - users choice from the menu
+// Parameters:  option   - users choice from the menu
 //
 // Returned:    none
 //***************************************************************************
@@ -154,9 +154,12 @@ void menu(int &option) {
 //
 // Description: opens file "parcels.txt"
 //
-// Parameters:  inputFile   -file read in from main
+// Parameters:  inputFile   - file read in from main
+//              fileName    - name of file
+//              apcParcels  - array of parcels
+//              size        - size of file
 //
-// Returned:    none
+// Returned:    bVal
 //***************************************************************************
 bool openFileForRead(ifstream& inputFile, string fileName, 
   Parcel* apcParcels[], int &size) {
@@ -222,7 +225,9 @@ void printAll(Parcel* apcParcels[], int size) {
 //
 // Description: Adds insurance to the parcel
 //
-// Parameters:  apcParcels    - Parcel array
+// Parameters:  apcParcels    - Parcel array    
+//              size          - size of file
+//              trackingId    - ID number of package
 //
 // Returned:    bVal
 //***************************************************************************
@@ -239,8 +244,10 @@ bool addInsurance(Parcel* apcParcels[], int size, int trackingId) {
     if (anInt > NEG_ONE || anInt < TWENTY_SIX) {
       bVal = true;
       cout << "Added Insurance for ";
-      apcParcels[anInt]->getInsured(); 
-     // cout << apcParcels[anInt]->setInsured(getInsured());  
+      apcParcels[anInt]->getInsured();
+      cout << apcParcels[anInt]->setInsured(getInsured()); 
+
+      apcParcels[anInt]->print(cout); 
 
       if (!apcParcels[anInt]) {
         bVal = false;
@@ -255,6 +262,8 @@ bool addInsurance(Parcel* apcParcels[], int size, int trackingId) {
 // Description: Adds rush delivery to a parcel
 //
 // Parameters:  apcParcels    - array of Parcels
+//              size          - size of file
+//              trackingId    - ID number of package
 //
 // Returned:    bVal
 //***************************************************************************
@@ -271,8 +280,10 @@ bool addRush(Parcel* apcParcels[], int size, int trackingId) {
 
   if (anInt > NEG_ONE || anInt < TWENTY_SIX) {
     bVal = true;
-    cout << "Added Insurance for ";
+    cout << "Added Rush for ";
     cout << apcParcels[anInt]->getRush();
+
+    apcParcels[anInt]->print(cout);
 
     if (!apcParcels[anInt]) {
       bVal = false;
@@ -288,6 +299,8 @@ bool addRush(Parcel* apcParcels[], int size, int trackingId) {
 // Description: Delivery for a parcel
 //
 // Parameters:  apcParcels    - array of Parcels
+//              size          - size of file
+//              trackingId    - ID number of package
 //
 // Returned:    none
 //***************************************************************************
@@ -313,11 +326,14 @@ void closeFileForRead(ifstream& inputFile) {
 }
 
 //***************************************************************************
-// Function:    
+// Function:    findIndex
 //
-// Description: 
+// Description: Finds the index in the array for the data that matches the
+//              trackingId entered
 //
-// Parameters:  
+// Parameters:  trackingId    - ID number of package
+//              size          - size of file
+//              apcParcels    - Parcel array
 //
 // Returned:    
 //***************************************************************************
