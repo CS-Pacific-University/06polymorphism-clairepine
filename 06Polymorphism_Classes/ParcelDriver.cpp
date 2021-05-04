@@ -250,11 +250,14 @@ bool addInsurance(Parcel* apcParcels[], int size, int trackingId) {
     if (index > NEG_ONE || index < TWENTY_SIX) {
       bVal = true;
       cout << "Added Insurance for ";
-
-      apcParcels[index]->setInsured(apcParcels[index]->getInsured()); 
+      
+      cout << apcParcels[index]->
+        setInsured(apcParcels[index]->getInsured()); 
+      cout << endl;
 
       apcParcels[index]->print(cout);
-      cout << endl;
+      cout << " INSURED";
+      cout << endl << endl;
 
       if (!apcParcels[index]) {
         bVal = false;
@@ -288,11 +291,11 @@ bool addRush(Parcel* apcParcels[], int size, int trackingId) {
   if (index > NEG_ONE || index < TWENTY_SIX) {
     bVal = true;
     cout << "Added Rush for ";
-    apcParcels[index]->setRush(apcParcels[index]->getRush());
+    cout << apcParcels[index]->setRush(apcParcels[index]->getRush());
     cout << endl;
 
     apcParcels[index]->print(cout);
-    cout << endl;
+    cout << endl << endl;
 
     if (!apcParcels[index]) {
       bVal = false;
