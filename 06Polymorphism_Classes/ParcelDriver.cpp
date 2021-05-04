@@ -54,7 +54,7 @@ int main() {
   Parcel* apcParcels[25];
   int size = 0;
   int option = 0;
-  int trackingId;
+  int trackingId = 0;
   ifstream inFile;
 
   if (!openFileForRead(inFile, FILE_NAME, apcParcels, size)) {
@@ -62,47 +62,49 @@ int main() {
     return EXIT_FAILURE;
   }
 
+  do {
     menu(option);
 
     if (option == OPTION_ONE) {
       printAll(apcParcels, size);
     }
 
-   if (option == OPTION_TWO || option == OPTION_THREE ||
+    if (option == OPTION_TWO || option == OPTION_THREE ||
       option == OPTION_FOUR) {
 
       do {
         cout << "TID> ";
-        cin >> trackingId; 
+        cin >> trackingId;
 
         if (trackingId > MAX_SIZE || trackingId < MIN_SIZE) {
           menu(option);
           cout << "TID> ";
           cin >> trackingId;
-         }
+        }
 
-       } while (trackingId > MAX_SIZE || trackingId < MIN_SIZE);
-    } 
+      } while (trackingId > MAX_SIZE || trackingId < MIN_SIZE);
+    }
 
     if (option == OPTION_TWO) {
-      addInsurance(apcParcels, size, trackingId); 
+      addInsurance(apcParcels, size, trackingId);
     }
 
     if (option == OPTION_THREE) {
       addRush(apcParcels, size, trackingId);
     }
-    
-   /* if (option = OPTION_FOUR) {
-      deliver(apcParcels, size);
-    }*/
+
+    if (option = OPTION_FOUR) {
+      deliver(apcParcels, size, trackingId);
+    }
 
     if (option == OPTION_FIVE) {
       return EXIT_SUCCESS;
     }
+  } while (option >= OPTION_ONE && option <= OPTION_FOUR);
 
     closeFileForRead(inFile); 
 
-    // delete [] apcParcels; 
+    delete [] apcParcels; 
 
   cout << "Reached the end!\n"; 
   return EXIT_SUCCESS;
@@ -245,7 +247,7 @@ bool addInsurance(Parcel* apcParcels[], int size, int trackingId) {
       bVal = true;
       cout << "Added Insurance for ";
       apcParcels[anInt]->getInsured();
-      cout << apcParcels[anInt]->setInsured(getInsured()); 
+     // cout << apcParcels[anInt]->setInsured(getInsured()); 
 
       apcParcels[anInt]->print(cout); 
 
@@ -306,7 +308,21 @@ bool addRush(Parcel* apcParcels[], int size, int trackingId) {
 //***************************************************************************
 void deliver(Parcel* apcParcels[], int size, int trackingId) {
 
+  const int NEG_ONE = -1;
+  const int TWENTY_SIX = 26;
 
+  int anInt;
+
+  anInt = findIndex(trackingId, size, apcParcels);
+
+  if (anInt > NEG_ONE || anInt < TWENTY_SIX) {
+    cout << "Delivered!";
+    cout << apcParcels[anInt]->getDeliveryDay() << "Day,";
+    //cout << price
+
+    apcParcels[anInt]->print(cout);
+
+    apcParcels[anInt] = nullptr;
 
 }
 
@@ -319,7 +335,7 @@ void deliver(Parcel* apcParcels[], int size, int trackingId) {
 //
 // Returned:    none
 //***************************************************************************
-void closeFileForRead(ifstream& inputFile) {
+void closeFileForRead(ifstream& inputFile) { 
 
   inputFile.close(); 
 
