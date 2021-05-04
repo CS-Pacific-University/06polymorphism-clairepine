@@ -21,6 +21,7 @@ class Parcel {
 		int getDistance() const;
 		bool getInsured() const;
 		bool getRush() const;
+		bool isMatch(int) const; 
 		int getTid() const;
 
 		void setCost(double cost);

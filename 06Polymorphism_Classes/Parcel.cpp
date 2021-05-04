@@ -126,6 +126,25 @@ bool Parcel::getRush() const {
 }
 
 //***************************************************************************
+// Function:		isMatch
+//
+// Description:	
+//
+// Parameters:	
+//
+// Returned:		
+//***************************************************************************
+bool Parcel::isMatch(int trackingId) const {
+	bool bVal = false;
+
+	if (trackingId == mTrackingId) {
+		bVal = true;
+	} 
+
+	return bVal;
+}
+
+//***************************************************************************
 // Function:		getTid
 //
 // Description:	Gets the tracking id for the parcel

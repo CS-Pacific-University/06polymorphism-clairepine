@@ -18,14 +18,15 @@
 using namespace std;
 
 void drawHeading(string title);
-void menu(int &userInput);
+void menu(int &option);
 bool openFileForRead(ifstream& inputFile, string fileName,
   Parcel* apcParcels[], int &size);
 void printAll(Parcel* apcParcels[], int size); 
-//bool addInsurance(Parcel* apcParcels[], int size);
-//bool addRush(Parcel* apcParcels[], int size);
-//void deliver(Parcel* apcParcels[], int size); 
+bool addInsurance(Parcel* apcParcels[], int size, int trackingId);
+bool addRush(Parcel* apcParcels[], int size, int trackingId);
+void deliver(Parcel* apcParcels[], int size, int trackingId);  
 void closeFileForRead(ifstream& inputFile);
+int findIndex(int trackingId, int size, Parcel* apcParcels[]);
 
 //***************************************************************************
 // Function:    main
@@ -53,7 +54,7 @@ int main() {
   Parcel* apcParcels[25];
   int size = 0;
   int option = 0;
-  //int trackId;
+  int trackingId;
   ifstream inFile;
 
   if (!openFileForRead(inFile, FILE_NAME, apcParcels, size)) {
@@ -67,33 +68,31 @@ int main() {
       printAll(apcParcels, size);
     }
 
-    // error handling with TID
-
-   /* if (option == OPTION_TWO || option == OPTION_THREE ||
+   if (option == OPTION_TWO || option == OPTION_THREE ||
       option == OPTION_FOUR) {
 
       do {
         cout << "TID> ";
-        cin >> trackId;
+        cin >> trackingId; 
 
-        if (trackId > MAX_SIZE || trackId < MIN_SIZE) {
-          menu();
+        if (trackingId > MAX_SIZE || trackingId < MIN_SIZE) {
+          menu(option);
           cout << "TID> ";
-          cin >> trackId;
+          cin >> trackingId;
          }
 
-       } while (trackId > MAX_SIZE || trackId < MIN_SIZE);
+       } while (trackingId > MAX_SIZE || trackingId < MIN_SIZE);
     } 
 
-    if (option = OPTION_TWO) {
-      addInsurance(apcParcels, size); 
+    if (option == OPTION_TWO) {
+      addInsurance(apcParcels, size, trackingId); 
     }
 
-    if (option = OPTION_THREE) {
-      addRush(apcParcels, size);
+    if (option == OPTION_THREE) {
+      addRush(apcParcels, size, trackingId);
     }
     
-    if (option = OPTION_FOUR) {
+   /* if (option = OPTION_FOUR) {
       deliver(apcParcels, size);
     }*/
 
@@ -133,7 +132,7 @@ void drawHeading(string title) {
 //
 // Returned:    none
 //***************************************************************************
-void menu(int &userInput) {
+void menu(int &option) {
   const int FIVE = 5;
   const int ONE = 1;
 
@@ -145,8 +144,8 @@ void menu(int &userInput) {
 
   do {
     cout << "Choice> ";
-    cin >> userInput;
-  } while (userInput > FIVE || userInput < ONE);
+    cin >> option;
+  } while (option > FIVE || option < ONE);
 
 }
 
@@ -227,10 +226,26 @@ void printAll(Parcel* apcParcels[], int size) {
 //
 // Returned:    bVal
 //***************************************************************************
-bool addInsurance(Parcel* apcParcels[], int size) {
-  bool bVal = true;
+bool addInsurance(Parcel* apcParcels[], int size, int trackingId) {
+  bool bVal = false;
 
-  
+  const int NEG_ONE = -1;
+  const int TWENTY_SIX = 26;
+
+  int anInt;
+
+  anInt = findIndex(trackingId, size, apcParcels);
+
+    if (anInt > NEG_ONE || anInt < TWENTY_SIX) {
+      bVal = true;
+      cout << "Added Insurance for ";
+      apcParcels[anInt]->getInsured(); 
+     // cout << apcParcels[anInt]->setInsured(getInsured());  
+
+      if (!apcParcels[anInt]) {
+        bVal = false;
+      }
+  }
 
   return bVal;
 }
@@ -243,13 +258,29 @@ bool addInsurance(Parcel* apcParcels[], int size) {
 //
 // Returned:    bVal
 //***************************************************************************
-//bool addRush(Parcel* apcParcels[], int size) {
-//  bool bVal = true;
-//
-//
-//
-//  return bVal;
-//}
+bool addRush(Parcel* apcParcels[], int size, int trackingId) {
+
+  bool bVal = false;
+
+  const int NEG_ONE = -1;
+  const int TWENTY_SIX = 26;
+
+  int anInt;
+
+  anInt = findIndex(trackingId, size, apcParcels);
+
+  if (anInt > NEG_ONE || anInt < TWENTY_SIX) {
+    bVal = true;
+    cout << "Added Insurance for ";
+    cout << apcParcels[anInt]->getRush();
+
+    if (!apcParcels[anInt]) {
+      bVal = false;
+    }
+  }
+
+  return bVal;
+}
 
 //***************************************************************************
 // Function:    deliver
@@ -260,9 +291,11 @@ bool addInsurance(Parcel* apcParcels[], int size) {
 //
 // Returned:    none
 //***************************************************************************
-//void deliver(Parcel* apcParcels[], int size) {
-//
-//}
+void deliver(Parcel* apcParcels[], int size, int trackingId) {
+
+
+
+}
 
 //***************************************************************************
 // Function:    closeFileForRead
@@ -277,4 +310,26 @@ void closeFileForRead(ifstream& inputFile) {
 
   inputFile.close(); 
 
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+int findIndex(int trackingId, int size, Parcel* apcParcels[]) {
+  int index = -1;
+
+  for (int i = 0; i < size; i++) {
+    if (apcParcels[i]->isMatch(trackingId)) {
+      
+      index = i;
+
+    }
+  }
+  return index;
 }
